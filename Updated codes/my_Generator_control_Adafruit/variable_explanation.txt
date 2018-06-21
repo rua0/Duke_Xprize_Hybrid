@@ -1,0 +1,4 @@
+dependency: <Adafruit_PWMServoDriver.h> library
+
+x_PL corresponds to pulse high length in ms
+x_Tick corresponds to the nnumber of ticks on a spectrum of 0-4095 (counter stuffs)

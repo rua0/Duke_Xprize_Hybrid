@@ -1,0 +1,73 @@
+report notes:
+
+2017S (ran the engine and measured current):
+1.
+rectifier circuit
+system diagram
+
+2.
+The data sheet for the current sensor can be found at this link:  http://www.digikey.com/product-detail/en/allegro-microsystems-llc/ASEK759ECB-200B-T-DK/620-1611-ND/4867632 
+
+3. 
+arduino codes:
+CurrentSensorTest.ino​ into ​GeneratorControl.ino​ (see Code section).  
+
+analog
+
+4.
+As to the  mapping between analog voltage from the thin white wire and actual current  flowing through the thick wire is linear as shown in p.15 of the datasheet. Refer to our attached MATLAB code to access the data we have collected on this current  sensor.  
+------------------
+How to Run The System  
+------------------
+1. Power ESC.
+  
+a. ESC analog pin 3 on the Adafruit shield. pin 5 for the throttle and pin 6 for the choke pin.   
+
+(i. The reason these pins are used is because only certain pins on the shield operate at frequencies that are suitable for producing the  pulse-width-modulation (PWM) signals that control ESCs and servos. b. Supply battery power to BEC and connect the BEC to the Adafruit shield’s two screw terminals and the ignition box via the Y-cable. Alternatively, one can  omit the BEC and use an external 5 V power supply.)
+
+2. i. Set the throttle and choke valves to produce a rich gas mixture to start the engine. This means the choke should be fully closed and the throttle should be fully open.  
+
+(This can be done by manually moving the valves by hand, or by using the servos to  control them. However, if the servos are used, they must be calibrated first (see  Servo Calibration section).  a. Note: This setting corresponds to a rich mixture because it reduces the  amount of air entering the cylinders which “richens” the air/gas mixture,  which helps in starting the engine when it is cold. When the engine warms up, the choke should be scaled back so that the engine runs more efficiently.)  
+
+3. power Arduino
+
+4. run GeneratorControl​ script, use serial monitor to control.  
+
+5. power the ESC. 
+Make sure you  hear the correct tone from the ESC. For two 6s (6 cell) LiPo batteries, there should be 3 beeps.  
+
+6. serial monitor for the initialization sequence. 
+
+(The engine should start before the completion of the sequence. IT IS IMPERATIVE THAT ONE IMMEDIATELY  STOP SENDING SIGNALS TO THE MOTOR VIA THE ESC WHEN THE ENGINE STARTS.  This can be done by by manually disconnecting the ESC and motor or shortening the  initialization sequence in the code so that it is finished by the time the engine starts.)
+
+a. IMPORTANT NOTE: If the engine is run without the rectifier and its battery load, it will fry the ESC!  
+b. Note: The electric motor can be run in either direction by switching two of  the wires from the ESC. Make sure the electric motor is spinning clockwise to  that it turns the engine in the proper direction. 
+------------------
+5. Programming the ESC  
+See “ESCprogramming.pdf” in  the “Our  Documentation” folder 
+
+The left 3-pin connector is for the ESC receiver cable (which is the shorter of the two 3-pin  female connectors on the ESC!) The right 3-pin connector on the card is to supply power to  the card. Connect the middle pin to V​cc​ power and the right-most pin to the ground. The  left-most pin is should be left unconnected. 
+
+Two  helpful instructional videos are given in the links below:   
+● https://www.youtube.com/watch?v=4Kg7MzGwvdw  
+● https://www.youtube.com/watch?v=a7kbMhBaUA4  
+Make sure to program the ESC to turn its brake off​. ​This prevents the ESC from  forcibly halting the motion of the motor when the engine begins to turn the motor  and signals are no longer being sent by the ESC.   
+
+6. codes
+
+Here is a basic outline of what each script does:  1. CalibrateServo​: code to calibrate the movement of the throttle/choke servos. By  finding the pulse lengths/angular positions that correspond to the throttle/choke  valves being fully open and closed, one can find what pulse length one needs to  send to get any degree of “openness.”  2. CurrentSensorTest​: code to read the signal voltage from the current sensor  3. GeneratorControl​: starts up the entire system (without readout from the current  sensor)  4. MotorTest_Adafruit​: tests sending PWM code to the ESC using the Adafruit servo  library; has since been rendered obsolete  5. MotorTest_Arduino​: tests sending PWM code to the ESC using the Arduino servo  library; was successful and was incorporated into ​GeneratorControl 6. Old Code​: folder that contains all of the code from the previous year’s power  electronics team.  7. ServoTest​: meant to test the servos; based on the minimum and maximum pulse  lengths found in the calibration, this tests to see how the servos perform when  sending a percent from 0% to 100%  (fully closed or fully open)  8. Tachometer​: meant to view the signal coming from the tachometer readout of the  ignition box  9. AllegroCurrSensorData​: a record of the data and plots that we obtained from  the current sensor in our final system  10.TBScurrSensorDataRun​: a record of the data and plots that we obtained from the  first current sensor that we used; given that it was unidirectional and difficult to use,  we decided not to use it 
+
+7. for future
+1. Modifying the ​GeneratorControl​ code to stop the ESC from sending signals to the  motor once the gas motor has started so that it doesn’t have to be manually  disconnected each time. This would involve using the tachometer signal to figure  out when to tell the ESC to stop sending signals.  2. Integrating the current sensor readout into the code.  3. Optimizing the servo mount and servo pins for better control of the valves. 
+19 
+ 
+4. Figuring out how to control the speed of the engine using the   5. Characterizing the power output of the generator.  6. Implementing an emergency kill-switch in case too much current is sent to the  charging battery (source 2).   7. Rebuilding the frame to match our design for incorporation into the drone.  
+
+8. documentation:
+
+All of our code may be accessed at: ​https://github.com/tamran/Team-Hydra  
+The documentation of our meetings, links to references, and our videos and pictures can  be found on our Google drive folder here:  https://drive.google.com/open?id=0B9PuS159UEkGa3ZVZEJ0bGZIQVk  
+Engine manual: ​http://manuals.hobbico.com/dle/dleg0060-manual-v2.pdf  
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

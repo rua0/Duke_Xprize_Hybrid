@@ -1,0 +1,1 @@
+updated version of arduino motor test codes (from team Hydra), which uses an adafruit board to produce a duty cycle controllable pwm signal to run a motor or servo

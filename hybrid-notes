@@ -1,0 +1,8 @@
+ The left 3-pin connector on the bottom of the Programming Card is for the ESC receiver cable (the shorter of the two 3-pin female connectors of the ESC). The right 3-pin connector on the Programming Card is to supply power to the card. Connect the middle pin to the power and the right-most pin to the ground. The left-most pin should be left unconnected. These videos can also be used as reference for using the ESC Programming Card. 
+
+There are two 3-pin connectors as shown in the image (at the bottom of the program card). The left 3-pin connector is for the ESC receiver cable (which is the shorter of the two 3-pin female connectors on the ESC!) The right 3-pin connector on the card is to supply power to the card. Connect the middle pin to Vcc power and the right-most pin to the ground. The left-most pin is should be left unconnected.
+
+
+----------------------
+
+Make sure to program the ESC to turn its brake off. This prevents the ESC from forcibly halting the motion of the motor when the engine begins to turn the motor and signals are no longer being sent by the ESC. 
