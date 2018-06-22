@@ -38,7 +38,8 @@ const double THROTTLE_MAX_PL = 1.343; // open   (closed/min throttle, min gas)
 //const double THROTTLE_MAX_PL = 1.925; // open   (closed/min throttle, min gas)
 //maybe could just go with ticks
 
-const double ESC_MIN_PL = 1;
+const double ESC_MIN_PL = 1.45;
+//const double ESC_MIN_PL = 1;//1 is the lowest the servo tester generated
 const double ESC_MAX_PL = 2;
 
 

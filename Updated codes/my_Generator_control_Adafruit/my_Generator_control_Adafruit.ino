@@ -73,11 +73,12 @@ char str[100];
 //interactive tests
 void inter_test(){
   thr=Serial.parseInt();
-  cho=Serial.parseInt();
+//  cho=Serial.parseInt();
   sprintf(str,"throttle value is %d, choke value is %d",thr,cho);
   Serial.println(str);
-  sendPulse(THROTTLE_PIN, thr);
-  sendPulse(CHOKE_PIN,cho);
+//  sendPulse(THROTTLE_PIN, thr);
+//  sendPulse(CHOKE_PIN,cho);
+  sendPulse(ESC_PIN,thr);
 }
 
 //interactive tests
@@ -90,23 +91,31 @@ void inter_pt_test(){
 
 void loop() {
     test();
-//    while(1){
-//      
-//      if(Serial.available()){
-//        //debug pwm
-//
-//        //debug together
+    //20 is the min to start it 
+    sendPulse(ESC_PIN,20);
+    delay(1000);
+    sendPulse(ESC_PIN,30);
+    delay(1000);
+    sendPulse(ESC_PIN,50);
+    delay(500);
+    setServoLow(ESC_PIN);
+    while(1){
+      
+      if(Serial.available()){
+        //debug pwm
+
+        //debug together
 //        inter_test();
-////        inter_pt_test();
-//        delay(1000);
-//      }
-//      inc_test();
-////      setServoLow(CHOKE_PIN);
-////      setServoLow(THROTTLE_PIN);
-////      setServoHigh(CHOKE_PIN);
-////      setServoHigh(THROTTLE_PIN);
-////      
-//    }
+//        inter_pt_test();
+        //delay(1000);
+      }
+      //inc_test();
+//      setServoLow(CHOKE_PIN);
+//      setServoLow(THROTTLE_PIN);
+//      setServoHigh(CHOKE_PIN);
+//      setServoHigh(THROTTLE_PIN);
+//      
+    }
      if(MODE == 0) {
         Serial.println("Waiting for command: 1/2/3 - Start Motor, 4/5 - Idle Motor, 6 - Stop Motor (Choke)");
      }
