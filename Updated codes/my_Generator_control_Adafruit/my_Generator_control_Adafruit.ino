@@ -38,10 +38,25 @@ void setup() {
 //  yield();
 }
 
+void test(){
+  double minPL,maxPL, minPercent, maxPercent; 
+  minPL = THROTTLE_MIN_PL;
+  maxPL = THROTTLE_MAX_PL;
+  minPercent = THROTTLE_MIN;
+  maxPercent = THROTTLE_MAX;
+  int minTick = round(minPL/TICK_LENGTH);
+  int maxTick = round(maxPL/TICK_LENGTH);
+  Serial.print("minTick is");
+  Serial.println(minTick);
+  Serial.print("maxTick is");
+  Serial.println(maxTick);
+}
 void loop() {
     int thr,cho,pt;
     char str[100];
     while(1){
+      test();
+      delay(1000);
       if(Serial.available()){
         //debug pwm
 //        pt=Serial.parseInt();
@@ -60,14 +75,14 @@ void loop() {
 //      setServoLow(THROTTLE_PIN);
 //      setServoHigh(CHOKE_PIN);
 //      setServoHigh(THROTTLE_PIN);
-      for(int i=285;i<=355;i+=1){
-        Serial.print("i is ");
-        Serial.println(i);
-        pwm.setPWM(THROTTLE_PIN,0,i);
-        delay(100);
-//        sendPulse(THROTTLE_PIN, 40);
-//        sendPulse(CHOKE_PIN, 50);
-      }
+//      for(int i=285;i<=355;i+=1){
+//        Serial.print("i is ");
+//        Serial.println(i);
+//        pwm.setPWM(THROTTLE_PIN,0,i);
+//        delay(100);
+////        sendPulse(THROTTLE_PIN, 40);
+////        sendPulse(CHOKE_PIN, 50);
+//      }
     }
      if(MODE == 0) {
         Serial.println("Waiting for command: 1/2/3 - Start Motor, 4/5 - Idle Motor, 6 - Stop Motor (Choke)");
