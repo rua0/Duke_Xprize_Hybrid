@@ -38,12 +38,14 @@ void setup() {
 //  yield();
 }
 
+//print tick mapping
 void test(){
+  //measure the numbers
   double minPL,maxPL, minPercent, maxPercent; 
-  minPL = THROTTLE_MIN_PL;
-  maxPL = THROTTLE_MAX_PL;
-  minPercent = THROTTLE_MIN;
-  maxPercent = THROTTLE_MAX;
+  minPL = CHOKE_MIN_PL;
+  maxPL = CHOKE_MAX_PL;
+  minPercent = CHOKE_MIN;
+  maxPercent = CHOKE_MAX;
   int minTick = round(minPL/TICK_LENGTH);
   int maxTick = round(maxPL/TICK_LENGTH);
   Serial.print("minTick is");
@@ -51,39 +53,60 @@ void test(){
   Serial.print("maxTick is");
   Serial.println(maxTick);
 }
+
+//incremental test
+void inc_test(){
+  for(int i=0;i<=100;i+=10){
+    Serial.print("i is ");
+    Serial.println(i);
+    //pwm.setPWM(THROTTLE_PIN,0,i);
+    sendPulse(CHOKE_PIN, i);
+//    sendPulse(THROTTLE_PIN, i);
+    delay(500);
+//        
+  }
+}
+
+int thr,cho,pt;
+char str[100];
+
+//interactive tests
+void inter_test(){
+  thr=Serial.parseInt();
+  cho=Serial.parseInt();
+  sprintf(str,"throttle value is %d, choke value is %d",thr,cho);
+  Serial.println(str);
+  sendPulse(THROTTLE_PIN, thr);
+  sendPulse(CHOKE_PIN,cho);
+}
+
+//interactive tests
+void inter_pt_test(){
+  pt=Serial.parseInt();
+  sprintf(str,"pulse tick is %d",pt);
+  Serial.println(str);
+  pwm.setPWM(CHOKE_PIN,0,pt);
+}
+
 void loop() {
-    int thr,cho,pt;
-    char str[100];
-    while(1){
-      test();
-      delay(1000);
-      if(Serial.available()){
-        //debug pwm
-//        pt=Serial.parseInt();
-//        sprintf(str,"pulse tick is %d",pt);
-//        Serial.println(str);
-//        pwm.setPWM(THROTTLE_PIN,0,pt);
-        //debug together
-//        thr=Serial.parseInt();
-//        cho=Serial.parseInt();
-//        sprintf(str,"throttle value is %d, choke value is %d",thr,cho);
-//        Serial.println(str);
-//        sendPulse(THROTTLE_PIN, thr);
-//        sendPulse(CHOKE_PIN,cho);
-      }
-//      setServoLow(CHOKE_PIN);
-//      setServoLow(THROTTLE_PIN);
-//      setServoHigh(CHOKE_PIN);
-//      setServoHigh(THROTTLE_PIN);
-//      for(int i=285;i<=355;i+=1){
-//        Serial.print("i is ");
-//        Serial.println(i);
-//        pwm.setPWM(THROTTLE_PIN,0,i);
-//        delay(100);
-////        sendPulse(THROTTLE_PIN, 40);
-////        sendPulse(CHOKE_PIN, 50);
+    test();
+//    while(1){
+//      
+//      if(Serial.available()){
+//        //debug pwm
+//
+//        //debug together
+//        inter_test();
+////        inter_pt_test();
+//        delay(1000);
 //      }
-    }
+//      inc_test();
+////      setServoLow(CHOKE_PIN);
+////      setServoLow(THROTTLE_PIN);
+////      setServoHigh(CHOKE_PIN);
+////      setServoHigh(THROTTLE_PIN);
+////      
+//    }
      if(MODE == 0) {
         Serial.println("Waiting for command: 1/2/3 - Start Motor, 4/5 - Idle Motor, 6 - Stop Motor (Choke)");
      }
@@ -117,6 +140,7 @@ void loop() {
          break;
          
        case 3:
+       //open choke and increase throttle
          Serial.println("Moving to Start Sequence Phase 3...");
          sendPulse(ESC_PIN, 40);
          sendPulse(THROTTLE_PIN, 65);
@@ -124,10 +148,11 @@ void loop() {
          break;
          
        case 4:
+       //disengage ESC
          Serial.println("Initiating Idle Sequence...");
-         sendPulse(ESC_PIN, 0.2);
-         sendPulse(THROTTLE_PIN, 0.65);
-         sendPulse(CHOKE_PIN, 0.5);
+         sendPulse(ESC_PIN, 20);
+         sendPulse(THROTTLE_PIN, 65);
+         sendPulse(CHOKE_PIN, 50);
          break;
          
        case 5:
@@ -142,8 +167,8 @@ void loop() {
          //commented out for now
          //setServoLow(SPARK_PIN);
  
-         sendPulse(ESC_PIN, 0.0);
-         sendPulse(THROTTLE_PIN, 0.0);
+         sendPulse(ESC_PIN, 0);
+         sendPulse(THROTTLE_PIN, 0);
          sendPulse(CHOKE_PIN, 100);
          break;
       
@@ -152,8 +177,8 @@ void loop() {
          break;
        
      }
-     if(MODE!=6){
-      MODE+=1;
-     }
+//     if(MODE!=6){
+//      MODE+=1;
+//     }
      delay(1500);
 }
