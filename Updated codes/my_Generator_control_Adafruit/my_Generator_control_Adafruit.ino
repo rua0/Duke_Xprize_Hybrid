@@ -27,7 +27,7 @@ void setup() {
   // CLOSED THROTTLE, CLOSED CHOKE
   setServoLow(THROTTLE_PIN);
   setServoLow(CHOKE_PIN);
-
+  sendPulse(CHOKE_PIN,80);
   //initializeMotor();
 
   setServoLow(ESC_PIN);
@@ -39,13 +39,42 @@ void setup() {
 }
 
 void loop() {
-  
-//     if(MODE == 0) {
-//        Serial.println("Waiting for command: 1/2/3 - Start Motor, 4/5 - Idle Motor, 6 - Stop Motor (Choke)");
-//     }
-//     if(Serial.available()){
-//        MODE = Serial.parseInt();
-//     }
+    int thr,cho,pt;
+    char str[100];
+    while(1){
+      if(Serial.available()){
+        //debug pwm
+//        pt=Serial.parseInt();
+//        sprintf(str,"pulse tick is %d",pt);
+//        Serial.println(str);
+//        pwm.setPWM(THROTTLE_PIN,0,pt);
+        //debug together
+//        thr=Serial.parseInt();
+//        cho=Serial.parseInt();
+//        sprintf(str,"throttle value is %d, choke value is %d",thr,cho);
+//        Serial.println(str);
+//        sendPulse(THROTTLE_PIN, thr);
+//        sendPulse(CHOKE_PIN,cho);
+      }
+//      setServoLow(CHOKE_PIN);
+//      setServoLow(THROTTLE_PIN);
+//      setServoHigh(CHOKE_PIN);
+//      setServoHigh(THROTTLE_PIN);
+      for(int i=285;i<=355;i+=1){
+        Serial.print("i is ");
+        Serial.println(i);
+        pwm.setPWM(THROTTLE_PIN,0,i);
+        delay(100);
+//        sendPulse(THROTTLE_PIN, 40);
+//        sendPulse(CHOKE_PIN, 50);
+      }
+    }
+     if(MODE == 0) {
+        Serial.println("Waiting for command: 1/2/3 - Start Motor, 4/5 - Idle Motor, 6 - Stop Motor (Choke)");
+     }
+     if(Serial.available()){
+        MODE = Serial.parseInt();
+     }
      
      switch (MODE) {
        case 1:

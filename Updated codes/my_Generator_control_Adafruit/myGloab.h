@@ -29,9 +29,13 @@ const double TICK_LENGTH = pow(10,3)/(1.0*FREQ * NUM_TICKS); // gives ms/tick
 // DEFINE MIN/MAX PWM LENGTHS IN MILLISECONDS (ms)
 const double CHOKE_MIN_PL = 0.650; // closed choke, min air
 const double CHOKE_MAX_PL = 1.200; // open choke, max air
- 
+
 const double THROTTLE_MIN_PL = 1.250; // closed (originally open/full throttle, max gas)
 const double THROTTLE_MAX_PL = 1.925; // open   (closed/min throttle, min gas)
+
+//was
+//const double THROTTLE_MIN_PL = 1.250; // closed (originally open/full throttle, max gas)
+//const double THROTTLE_MAX_PL = 1.925; // open   (closed/min throttle, min gas)
 
 const double ESC_MIN_PL = 1;
 const double ESC_MAX_PL = 2;
