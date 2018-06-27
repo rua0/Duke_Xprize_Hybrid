@@ -10,6 +10,7 @@ int percent = 0;
 double pulseLength = 1500;
 char serialString[100];
 int MODE = 0;
+int prev_MODE = 0;
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
 //should work
@@ -51,17 +52,17 @@ void sendPulse(int servoNum, double percent){
     maxPercent = ESC_MAX;
     
   }
-  Serial.println("minPL maxPL");
-  Serial.print(minPL);
-  Serial.println(maxPL);
+//  Serial.println("minPL maxPL");
+//  Serial.print(minPL);
+//  Serial.println(maxPL);
 
   int minTick = round(minPL/TICK_LENGTH);
   int maxTick = round(maxPL/TICK_LENGTH);
   double pulseTick = mapVal(percent,minPercent,maxPercent,minTick,maxTick);
 //  myServo.writeMicroseconds(pulseLength);
 //yao: replaced with adafruit lib func
-  Serial.print("pulseTick is");
-  Serial.println(pulseTick);
+//  Serial.print("pulseTick is");
+//  Serial.println(pulseTick);
   pwm.setPWM(servoNum,0,pulseTick);
 }
 

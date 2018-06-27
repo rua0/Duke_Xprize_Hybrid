@@ -1,0 +1,88 @@
+stop worry this for now
+---------------------------------------
+1. test the motor spin at the condition
+
+want to have motor running
+
+want sequence of ignition procedure
+1. warm up
+close choke
+high throttle
+wait 1.5s
+motor running slowly a 20-30 percent
+wait .5s? tentative
+//gas gets rich and likely engine starts running weakly
+
+2. (closing choke)
+
+motor running slowly a 20-30 percent
+slowly open the choke till half open (maybe the condition is actually RPM)
+lower throttle to half
+
+3. (set throttle)
+
+//likely the engine is already kinda started
+
+
+4. (make throttle tied)
+enginer normal running
+
+5. after ignition/started, want to be able to 
+1. change throttle 
+2. stop esc and throttle
+
+-------------------
+gonna just use what was there
+1.warm up
+close choke fully
+high throttle fully
+wait 1.5s
+motor running slowly a 20-30 percent
+wait .5s? tentative
+
+2.
+motor running slowly a 20-30 percent
+choke half
+throttle half
+wait 0.5s
+
+3.
+motor running slowly a 20-30 percent
+choke half
+throttle 65%
+wait 0.5s
+
+4. idle 1
+motor idle 10%?
+choke half
+throttle 65%
+wait 0.5s
+
+5. idle 2
+motor completely idle 0%
+choke half
+throttle 65%
+
+maybe also want throttle controllable
+
+6. stop
+motor 0
+choke fully open
+throttle fully 0
+
+
+
+other circuits
+---------------------------------------
+sparks circuit
+
+load circuit
+
+1. connect the load, verify the load, figure out the switches
+
+2. get the current sensor working
+
+----------------------------------------
+run an esc test and a servo test seperately
+
+

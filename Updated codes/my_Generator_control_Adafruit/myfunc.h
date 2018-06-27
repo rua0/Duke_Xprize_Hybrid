@@ -11,6 +11,7 @@ extern int percent;
 extern double pulseLength;
 extern char serialString[100];
 extern int MODE;
+extern int prev_MODE;
 //extern int x;
 double mapVal(double val, double fromMin, double fromMax, double toMin, double toMax);
 void sendPulse(int servoNum, double percent);
