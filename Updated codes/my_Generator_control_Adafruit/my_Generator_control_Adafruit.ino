@@ -27,7 +27,7 @@ void setup() {
   // CLOSED THROTTLE, CLOSED CHOKE
   setServoLow(THROTTLE_PIN);
   setServoLow(CHOKE_PIN);
-  sendPulse(CHOKE_PIN,80);
+  sendPulse(CHOKE_PIN,0);
   
   //initializeMotor();
 
@@ -44,7 +44,16 @@ void loop() {
     //test();
     //20 is the min to start it 
     
-
+//    int thr=0;
+//  while(1){
+//    if(Serial.available()){
+//      thr=Serial.parseInt();
+//      sendPulse(ESC_PIN,thr);
+//    }
+//    
+//  }
+  //low esc is 14 if started
+  //low esc is 18/19 if not started
     //take CMD if available
      if(Serial.available()){
         MODE = Serial.parseInt();
@@ -62,7 +71,7 @@ void loop() {
        case 1:
          Serial.println("Initiating Sequence: Warm-up");
          #ifdef PRINT_VALUE
-            Serial.println("THR: 100, CHO: 0, Motor: 25");
+            Serial.println("THR: 50, CHO: 0, Motor: 25");
          #endif
          // High THROTTLE, CLOSED CHOKE
          //motor running slowly
