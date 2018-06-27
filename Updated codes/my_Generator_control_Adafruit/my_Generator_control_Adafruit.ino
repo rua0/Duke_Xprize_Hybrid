@@ -44,16 +44,16 @@ void loop() {
     //test();
     //20 is the min to start it 
     
-//    int thr=0;
-//  while(1){
-//    if(Serial.available()){
-//      thr=Serial.parseInt();
-//      sendPulse(ESC_PIN,thr);
-//    }
-//    
-//  }
-  //low esc is 14 if started
-  //low esc is 18/19 if not started
+    int thr=0;
+  while(1){
+    if(Serial.available()){
+      thr=Serial.parseInt();
+      sendPulse(ESC_PIN,thr);
+    }
+    
+  }
+  //low esc is 7 if started
+  //low esc is 11 if not started
     //take CMD if available
      if(Serial.available()){
         MODE = Serial.parseInt();
