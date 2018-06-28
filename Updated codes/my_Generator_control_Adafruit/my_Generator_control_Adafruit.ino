@@ -40,22 +40,28 @@ void setup() {
 }
 
 #define PRINT_VALUE
+float thr_in=0;
 void loop() {
     //test();
     //20 is the min to start it 
     
-    int thr=0;
+    float thr=0;
+    int thri=0;
   while(1){
     if(Serial.available()){
-      thr=Serial.parseInt();
-      sendPulse(ESC_PIN,thr);
+      thri=Serial.parseFloat();
+      Serial.println(thri);
+      sendPulse(ESC_PIN,thri);
     }
     
   }
   //low esc is 7 if started
   //low esc is 11 if not started
     //take CMD if available
+    //take CMD only if only mode number is received
      if(Serial.available()){
+        Serial.print("Available ");
+        Serial.println(Serial.available());
         MODE = Serial.parseInt();
      }
      
@@ -123,6 +129,11 @@ void loop() {
          #ifdef PRINT_VALUE
             Serial.println("THR: 65, CHO: 50, Motor: 0");
          #endif
+         if(Serial.available()){
+            thr_in = Serial.parseFloat();
+            Serial.print("throttle read: ");
+            Serial.println(thr_in);
+          }
          sendPulse(ESC_PIN, 0.0);
          sendPulse(THROTTLE_PIN, 65);
          sendPulse(CHOKE_PIN, 50);
