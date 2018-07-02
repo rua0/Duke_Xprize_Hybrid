@@ -10,7 +10,7 @@ int percent = 0;
 double pulseLength = 1500;
 char serialString[100];
 int MODE = 0;
-int prev_MODE = 0;
+int prev_MODE = -1;
 Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
 
 //should work
