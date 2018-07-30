@@ -50,7 +50,7 @@ void loop() {
     //test();
     //20 is the min to start it 
     
-//   
+   
 //  while(1){
 //    if(Serial.available()){
 //      thri=Serial.parseFloat();
@@ -148,7 +148,7 @@ void loop() {
          #endif
          sendPulse(ESC_PIN, 0.0);
          sendPulse(THROTTLE_PIN, thr_in);
-         sendPulse(CHOKE_PIN, 60);
+         sendPulse(CHOKE_PIN, 100);
          break;
          
        case 6:
