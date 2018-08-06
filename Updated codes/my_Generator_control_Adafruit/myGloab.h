@@ -1,3 +1,5 @@
+//should be renamed
+
 #ifndef MY_GLOABAL_H
 #define MY_GLOABAL_H
 #if ARDUINO >= 100

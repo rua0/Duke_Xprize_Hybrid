@@ -1,6 +1,6 @@
-#ifndef MYFUNC_H
-#define MYFUNC_H
-
+#ifndef _PWM_LIB_H
+#define _PWM_LIB_H
+//MAYBE NOT USEFUL
 #include "Adafruit_PWMServoDriver.h"
 #ifndef _ADAFRUIT_PWMServoDriver_H
 #error Sketch must include Adafruit_PWMServoDriver.h
@@ -13,8 +13,9 @@ extern char serialString[100];
 extern int MODE;
 extern int prev_MODE;
 //extern int x;
+
 double mapVal(double val, double fromMin, double fromMax, double toMin, double toMax);
-void setPulse(int servoNum, double percent);
+void sendPulse(int servoNum, double percent);
 void setServoLow(int servoNum);
 void setServoHigh(int servoNum);
 void initializeMotor();

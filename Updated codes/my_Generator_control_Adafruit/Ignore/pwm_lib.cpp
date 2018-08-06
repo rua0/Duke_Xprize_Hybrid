@@ -24,11 +24,11 @@ double mapVal(double val, double fromMin, double fromMax, double toMin, double t
 }
 
 //should work
-// sets pwm pulse based on decimal percentage of throttle/amount of openness
+// sends pwm pulse based on decimal percentage of throttle/amount of openness
 // if ESC, percent = how fast motor is spinning
 // if CHOKE SERVO, percent  = how open it is
 // if THROTTLE SERVO, percent = how closed it is
-void setPulse(int servoNum, double percent){
+void sendPulse(int servoNum, double percent){
   double minPL,maxPL, minPercent, maxPercent;  
  // Servo myServo;
   if (servoNum == CHOKE_PIN){
@@ -68,7 +68,7 @@ void setPulse(int servoNum, double percent){
 
 
 //should work
-// set servo to min position
+// send servo to min position
 // if ESC, motor off
 // if CHOKE SERVO, closes
 // if THROTTLE SERVO, opens
@@ -110,7 +110,7 @@ double minPL,maxPL, minPercent, maxPercent;
 }
 
 
-// set servo to max position
+// send servo to max position
 // if ESC, motor at max rpm
 // if CHOKE SERVO, opens
 // if THROTTLE SERVO, closes
@@ -152,24 +152,24 @@ void setServoHigh(int servoNum){
 
 void initializeMotor(){
   Serial.println("Initializing...");
-  Serial.println("Starting Phase 1 - seting 1.0 ms pulse");
+  Serial.println("Starting Phase 1 - sending 1.0 ms pulse");
 //  escServo.writeMicroseconds(1000);
-  setPulse(ESC_PIN,0);
+  sendPulse(ESC_PIN,0);
   delay(5000);
-  Serial.println("Starting Phase 2 - seting 1.65 ms pulse");
+  Serial.println("Starting Phase 2 - sending 1.65 ms pulse");
 //  escServo.writeMicroseconds(1650);
-  setPulse(ESC_PIN,65);
+  sendPulse(ESC_PIN,65);
   delay(5000);
-  Serial.println("Starting Phase 3 - seting 1.8 ms pulse");
+  Serial.println("Starting Phase 3 - sending 1.8 ms pulse");
 //  escServo.writeMicroseconds(1800);
-  setPulse(ESC_PIN,80);
+  sendPulse(ESC_PIN,80);
   delay(10000);
-  Serial.println("Starting Final Phase 4 - seting 2.0 ms pulse");
+  Serial.println("Starting Final Phase 4 - sending 2.0 ms pulse");
 //  escServo.writeMicroseconds(2000);
-  setPulse(ESC_PIN,100);
+  sendPulse(ESC_PIN,100);
   delay(5000);
   // stop after initialization
   Serial.println("Motor Stopped, ready to go!");
 //  escServo.writeMicroseconds(1500);
-  setPulse(ESC_PIN,50);
+  sendPulse(ESC_PIN,50);
 }
