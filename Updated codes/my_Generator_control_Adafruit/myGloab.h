@@ -1,4 +1,6 @@
-//should be renamed
+//Author: Yao 
+//Email: yy123@duke.edu
+//gloabal variables or constants
 
 #ifndef MY_GLOABAL_H
 #define MY_GLOABAL_H

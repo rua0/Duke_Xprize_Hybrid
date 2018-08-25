@@ -1,3 +1,7 @@
+//Author: Yao and people before
+//Email: yy123@duke.edu
+//low-level function for generating pulses using adafruit shield
+
 #include "myfunc.h"
 #include "myGloab.h"
 

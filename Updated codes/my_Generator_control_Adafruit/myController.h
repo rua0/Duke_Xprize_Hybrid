@@ -1,3 +1,9 @@
+//Author: Yao
+//Email: yy123@duke.edu
+//this is mid-level operations that controls the engine and provides an interface
+//engine object gives access to throttle and choke and esc
+//controller object is an abstraction of the feedback loop to calculate the output
+
 #ifndef _MYCONTROLLER_H
 #define _MYCONTROLLER_H
 
@@ -14,6 +20,7 @@ private:
 
 };
 
+//read input voltage and convert to current
 
 class EngineTypeDef{
 public:

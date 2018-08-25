@@ -1,13 +1,8 @@
-#include <Wire.h>
-//not using this any more
-//#include <Servo.h>
+//Author: Yao
+//Email: yy123@duke.edu
+//dependency: <Adafruit_PWMServoDriver.h> library
+
 #include <string.h>
-//included in myfunc.h
-//#include <Adafruit_PWMServoDriver.h>
-//Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver();
-//used "" to use relative path
-#include "myfunc.h"
-#include "myGloab.h"
 #include "myController.h"
 
 EngineTypeDef h_eng;//engine handler
